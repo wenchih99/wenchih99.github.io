@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="WENCHIH'S BLOG" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Linux与硬件的搭配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="主机规划与磁盘分区">
+<meta property="og:url" content="http://example.com/2020/12/02/3-%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/index.html">
+<meta property="og:site_name" content="WENCHIH&#39;S BLOG">
+<meta property="og:description" content="Linux与硬件的搭配">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-02T02:56:46.000Z">
+<meta property="article:modified_time" content="2020-12-02T03:02:21.783Z">
+<meta property="article:author" content="WENCHIH CHANG">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2020/12/02/3-主机规划与磁盘分区/"/>
+
+
+
+
+
+  <title>主机规划与磁盘分区 | WENCHIH'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WENCHIH'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/02/3-%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WENCHIH'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">主机规划与磁盘分区</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-02T10:56:46+08:00">
+                2020-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/Linux%E8%A7%84%E5%88%99%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux规则与安装</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Linux与硬件的搭配"><a href="#Linux与硬件的搭配" class="headerlink" title="Linux与硬件的搭配"></a>Linux与硬件的搭配</h1><a id="more"></a>
+<ul>
+<li>硬件靠驱动运行</li>
+<li>购买硬件时要考虑性价比,和每瓦性能</li>
+<li>磁盘阵列模式(RAID)：利用硬件技术将数个硬盘整合成为一个大硬盘的方法</li>
+<li>各硬件设备在Linux中的文件名<ul>
+<li>在Linux系统中,每个设备都被当成一个文件来对待</li>
+<li>几乎所有的硬件设备文件都在/dev这个目录内</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>设备在Linux中的文件名</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SCSI、SATA、USB磁盘驱动器、U盘</td>
+<td>sd[a-p]</td>
+</tr>
+<tr>
+<td>Virtio接口</td>
+<td>vd[a-p]</td>
+</tr>
+<tr>
+<td>软盘驱动器</td>
+<td>fd[0-7]</td>
+</tr>
+<tr>
+<td>打印机</td>
+<td>lp[0-2]</td>
+</tr>
+<tr>
+<td>鼠标</td>
+<td>input/mouse[0-15] (通用)、psaux(ps/2接口)、mouse(当前鼠标)</td>
+</tr>
+<tr>
+<td>CD-ROM、DVD-ROM</td>
+<td>scd[0-1] (通用)、sr[0-1] (通用,Centos较常见)、cdrom(当前CD-ROM)</td>
+</tr>
+<tr>
+<td>磁带机</td>
+<td>ht0(IDE接口)、st0(SATA/SCSI接口)、tape(当前磁带)</td>
+</tr>
+<tr>
+<td>IDE磁盘驱动器</td>
+<td>hd[a-d] (旧系统才有)</td>
+</tr>
+</tbody></table>
+<h1 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h1><ul>
+<li>磁盘碟片上面可细分出扇区(sector)与磁道(track)两种单位,其中扇区的物理大小设计有两种,分别是512字节与4K字节</li>
+<li>早期磁盘第一个扇区里面含有的重要信息我们称为MBR(Master Boot Record,主引导记录)格式</li>
+</ul>
+<h2 id="MBR-MS-DOS-与GPT磁盘分区表-GUID-partition-table"><a href="#MBR-MS-DOS-与GPT磁盘分区表-GUID-partition-table" class="headerlink" title="MBR(MS-DOS)与GPT磁盘分区表(GUID partition table)"></a>MBR(MS-DOS)与GPT磁盘分区表(GUID partition table)</h2><ul>
+<li>通常文件系统的最小单位,分区的最小单位：柱面(所有碟片的同一磁道,Cylinder)</li>
+<li>利用参考对照柱面或扇区号码的方式来处理分区</li>
+<li>MBR分区表格式与限制<ul>
+<li>磁盘第一个扇区为512字节,主要存放两个东西<ul>
+<li>主引导记录(MBR)：可以安装启动引导程序,有446字节</li>
+<li>分区表：记录整个硬盘分区的状态,有64字节,最多仅能有四组记录区,每组记录区记录了该区间的起始与结束的柱面号码</li>
+</ul>
+</li>
+<li>硬盘默认分区表只能写入四组分区信息,分为主要(primary)与扩展(extended)分区</li>
+<li>当系统要写入磁盘时,一定会参考磁盘分区表,才嗯那个针对某个分区进行数据的处理</li>
+<li>扩展分区的目的是使用额外的扇区记录分区信息,扩展分区本身并不能被拿来格式化,扩展分区只能有一个</li>
+<li>扩展分区并不是只占一个区块,而是会分布在每个分区的最前面几个扇区来记录分区信息</li>
+<li>由扩展分区分出来的分区,被称为逻辑分区(logical partition),设备名称是由5号开始的</li>
+<li>所以第一个扇区记录的分区表与MBR很重要</li>
+</ul>
+</li>
+<li>GPT磁盘分区表<ul>
+<li>为了兼容所有磁盘,在扇区的定义上,大多会使用所谓的逻辑区块地址(Logical Block Address,LBA)来处理</li>
+<li>LBA0：MBR兼容区块,存储第一阶段的启动引导程序</li>
+<li>LBA1：GPT表头,记录分区表本身位置和大小、备份用的GPT分区放置位置、分区表校验码(CRC32)</li>
+<li>LBA2-33:实际记录分区信息处</li>
+<li>LBA34:实际分区</li>
+<li>LBA33-1：备份区块地址</li>
+</ul>
+</li>
+</ul>
+<h2 id="启动流程中的BIOS与UEFI启动检测程序"><a href="#启动流程中的BIOS与UEFI启动检测程序" class="headerlink" title="启动流程中的BIOS与UEFI启动检测程序"></a>启动流程中的BIOS与UEFI启动检测程序</h2><ul>
+<li>BIOS搭配MBR/GPT的启动流程<ul>
+<li>BIOS是一个写入到主板上的一个固件,计算机主动执行的第一个程序</li>
+<li>CMOS是记录各项硬件参数且嵌入在主板上面的存储器</li>
+<li>开机流程<ul>
+<li>BIOS：启动主动执行的固件,会认识第一个可启动的设备</li>
+<li>MBR：第一个可启动设备的第一个扇区内的主引导记录块,内含启动引导代码</li>
+<li>启动引导程序(boot loader)：一个可读取内核文件来执行的软件<ul>
+<li>提供选项：用户可以直接选择不同的启动选项,这也是多重引导的重要功能</li>
+<li>加载内核文件：直接指向可使用的程序区段来启动操作系统</li>
+<li>转交其他启动引导程序：将启动管理功能转交给其他启动引导程序负责(多重引导)</li>
+</ul>
+</li>
+<li>内核文件：开始启动操作系统</li>
+</ul>
+</li>
+<li>安装多重引导,先安装Windows再安装Linux</li>
+</ul>
+</li>
+<li>UEFI BIOS搭配GPT启动的流程<ul>
+<li>UEFI(Unified extensive Firmware Interface)：统一可扩展固件接口,由C语言编写</li>
+<li>UEFI加入了一个所谓的安全启动(secure boot)功能,需要关闭,才能进入Linux系统</li>
+</ul>
+</li>
+</ul>
+<h2 id="Linux系统最重要的目录树结构"><a href="#Linux系统最重要的目录树结构" class="headerlink" title="Linux系统最重要的目录树结构"></a>Linux系统最重要的目录树结构</h2><ul>
+<li>最重要的就是根目录,由”/“表示</li>
+<li>文件系统与目录树的关系(挂载)<ul>
+<li>就是利用一个目录当成进入点,将磁盘分区的数据放置在该目录下,也就是说进入该目录就可以读取该分区</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/02/4-%E5%AE%89%E8%A3%85Centos/" rel="next" title="安装Centos.md">
+                <i class="fa fa-chevron-left"></i> 安装Centos.md
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/02/2-LINUX/" rel="prev" title="LINUX">
+                LINUX <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E4%B8%8E%E7%A1%AC%E4%BB%B6%E7%9A%84%E6%90%AD%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">Linux与硬件的搭配</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="nav-number">2.</span> <span class="nav-text">磁盘分区</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MBR-MS-DOS-%E4%B8%8EGPT%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8-GUID-partition-table"><span class="nav-number">2.1.</span> <span class="nav-text">MBR(MS-DOS)与GPT磁盘分区表(GUID partition table)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B%E4%B8%AD%E7%9A%84BIOS%E4%B8%8EUEFI%E5%90%AF%E5%8A%A8%E6%A3%80%E6%B5%8B%E7%A8%8B%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">启动流程中的BIOS与UEFI启动检测程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux%E7%B3%BB%E7%BB%9F%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E7%9B%AE%E5%BD%95%E6%A0%91%E7%BB%93%E6%9E%84"><span class="nav-number">2.3.</span> <span class="nav-text">Linux系统最重要的目录树结构</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WENCHIH CHANG</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

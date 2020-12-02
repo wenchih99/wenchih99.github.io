@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="django," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="WENCHIH'S BLOG" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="项目笔记:Python-Web应用程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python-Web应用程序">
+<meta property="og:url" content="http://example.com/2020/12/02/web_note/index.html">
+<meta property="og:site_name" content="WENCHIH&#39;S BLOG">
+<meta property="og:description" content="项目笔记:Python-Web应用程序">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-02T02:56:46.000Z">
+<meta property="article:modified_time" content="2020-12-02T08:34:51.518Z">
+<meta property="article:author" content="WENCHIH CHANG">
+<meta property="article:tag" content="django">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2020/12/02/web_note/"/>
+
+
+
+
+
+  <title>Python-Web应用程序 | WENCHIH'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WENCHIH'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/02/web_note/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WENCHIH'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python-Web应用程序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-02T10:56:46+08:00">
+                2020-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/python-web/" itemprop="url" rel="index">
+                    <span itemprop="name">python-web</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="项目笔记-Python-Web应用程序"><a href="#项目笔记-Python-Web应用程序" class="headerlink" title="项目笔记:Python-Web应用程序"></a>项目笔记:Python-Web应用程序</h1><a id="more"></a>
+<h2 id="一、Django入门"><a href="#一、Django入门" class="headerlink" title="一、Django入门:"></a>一、Django入门:</h2><blockquote>
+<p>ll_env为环境名,事先安装好python3</p>
+</blockquote>
+<ul>
+<li>建立虚拟环境:<code>pyhton -m venv ll_env</code></li>
+<li>激活虚拟环境:<code>ll_env\Scripts\activate.bat</code></li>
+<li>停止虚拟环境:<code>ll_env\Scripts\deactivate.bat</code></li>
+<li>安装Django:<code>pip install Django</code></li>
+<li>在Django下新建项目:<code>django-admin.py startproject learning_log .(.表示让新项目使用合适的目录结构)</code></li>
+<li>列目录:<code>dir</code></li>
+<li>创建数据库:<code>python manage.py migrate</code></li>
+<li>运行服务器:<code>python manage.py runserver 端口号(端口号默认为8000)</code></li>
+<li>创建应用程序:<code>python manage.py startapp learning_logs(appname)</code></li>
+<li>models.py储存模型(用来管理数据),激活模型需要在settings.py的元组INSTALLED_APPS把模型目录(appname)加进去</li>
+<li>修改完数据,则需要修改数据库:<ul>
+<li>修改models.py</li>
+<li>执行命令:<code>python manage.py makemigrations learning_logs(形成迁移表)</code></li>
+<li>执行命令:<code>python manage.py migrate(应用迁移)</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="二、Django管理网站"><a href="#二、Django管理网站" class="headerlink" title="二、Django管理网站"></a>二、Django管理网站</h2><ul>
+<li>创建超级用户:<code>pyton manage.py createsuperuser</code></li>
+<li>向网站注册模型:修改admin.py,将我们创建的并且想要注册的模型引入:<ul>
+<li><code>from appname.models import 模型名(类名)</code></li>
+<li><code>admin.site.register(模型名)</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="三、Django-shell"><a href="#三、Django-shell" class="headerlink" title="三、Django shell"></a>三、Django shell</h2><blockquote>
+<p>交互式终端,易于向数据库查询特定信息</p>
+</blockquote>
+<ul>
+<li>打开终端:<code>python manage.py shell </code></li>
+<li>退出终端:<code>ctrl Z</code></li>
+<li>查看用户id<ul>
+<li><code>from django.contrib.auth.models import User</code></li>
+<li><code>for user in User.objects.all():</code><ul>
+<li><code>print(user.username,user.id)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>重置数据库:<code>pyhton manage.py flush</code></li>
+</ul>
+<h2 id="四、创建网页"><a href="#四、创建网页" class="headerlink" title="四、创建网页"></a>四、创建网页</h2><blockquote>
+<ol>
+<li>定义URL、编写视图和编写模板</li>
+<li>每个URL都被映射到特定的视图-&gt;视图函数获取并处理网页所需的数据-&gt;视图函数通常调用一个模板,后者生成浏览器能够理解的网页</li>
+</ol>
+</blockquote>
+<ul>
+<li>映射URL:打开urls.py定义变量urlpatterns列表,包含项目应用程序的URL</li>
+<li>每个urls文件最初引入URL函数和模块</li>
+<li>定义可在管理网站请求所有URL:<code>url(r&#39;^admin&#39;,admin.site.urls)</code></li>
+<li>定义应用程序请求的URL:<code>url(r&#39;&#39;,include((&#39;appname.urls&#39;,&#39;appname&#39;),namespace=&#39;appname&#39;))</code></li>
+<li>定义主页URL:<code>url(r&#39;^$&#39;,view.index,name=&#39;index&#39;)</code>,映射到视图(r表示字符串,^表示字符串起始,$表示字符串结束)</li>
+<li>编写视图views.py:  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">def index(request):</span><br><span class="line">    return render(原始请求对象request,网页模板&#39;learning_logs&#x2F;index.html&#39;)</span><br></pre></td></tr></table></figure></li>
+<li>建立放模板文件夹(appname文件夹-&gt;templates文件夹-&gt;appname文件夹-&gt;模板文件)</li>
+<li>创建其他网页(实行子模版继承父模板)</li>
+</ul>
+<h2 id="五、用户账户"><a href="#五、用户账户" class="headerlink" title="五、用户账户"></a>五、用户账户</h2><h3 id="输入数据"><a href="#输入数据" class="headerlink" title="输入数据"></a>输入数据</h3><ul>
+<li>用户提交信息的页面都是表单,创建表单的最简单方式是使用ModelForm</li>
+<li>函数reverse() 根据指定的URL模型确定URL,导入:<code>from django.urls import reverse</code></li>
+<li>GET请求:只是从服务器读取数据的页面</li>
+<li>POST请求:用户需要通过表单提交信息<h3 id="创建用户账户"><a href="#创建用户账户" class="headerlink" title="创建用户账户"></a>创建用户账户</h3></li>
+<li>创建应用程序users:<code>python manage.py startapp users</code></li>
+<li>创建登陆网页(URL-&gt;视图-模板)<ul>
+<li>URL:  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">from django.contrib.auth.views import LoginView</span><br><span class="line">urlpatterns &#x3D; [</span><br><span class="line">     url(r&#39;^login&#x2F;$&#39;,LoginView.as_view(),&#123;&#39;template_name&#39;:&#39;users&#x2F;login.html&#39;&#125;,name&#x3D;&#39;login&#39;),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li>视图:定义的login视图是默认视图,无需修改</li>
+<li>模板:创建模板目录时,一定要将login.html放在registration文件夹,否则会出现网页错误<ul>
+<li>一个应用程序的模板可继承另一个应用程序的模板 <code>&#123;% extends "learning_logs/base.html" %&#125; </code><h3 id="数据关联用户"><a href="#数据关联用户" class="headerlink" title="数据关联用户"></a>数据关联用户</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>限制访问:装饰器(decorator)<code>@login_required</code>,装饰器是为了检查用户是否登录<ul>
+<li>在视图函数前面加上装饰器,即可限制访问</li>
+<li>重定向登陆页面,需要在settings.py文件夹下加入代码:<code>LOGIN_URL = &#39;/users/login/&#39;</code></li>
+</ul>
+</li>
+<li>将模型关联至用户<ul>
+<li><code>from django.contrib.auth.models import User</code></li>
+<li>在最高层模型中加入:<code>owner = models.ForeignKey(User)</code></li>
+</ul>
+</li>
+<li>只显示用户自己的数据:<code>topics = Topic.objects.filter(owner=request.user).order_by(&#39;date_added&#39;)</code>,fliter函数用来获取合适的数据</li>
+<li>保护用户自己的数据<ul>
+<li>导入异常Http404: from django.http import Http404 </li>
+<li>获取当前id的条目:<code>topic = Topic.objects.get(id=topic_id)</code></li>
+<li>判断与请求的id是否一样:topic.owner == request.user,否则raise Http404</li>
+</ul>
+</li>
+<li>将新主题关联到用户:先修改,后保存数据库  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">new_topic &#x3D; form.save(commit&#x3D;False) </span><br><span class="line">new_topic.owner &#x3D; request.user </span><br><span class="line">new_topic.save()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="六、页面样式设置"><a href="#六、页面样式设置" class="headerlink" title="六、页面样式设置"></a>六、页面样式设置</h2><ul>
+<li>在虚拟环境下载应用程序django-bootstrap3:pip install django-bootstrap3</li>
+<li>只要有新的应用程序加入,要想应用,就得在settings.py的INSTALL_APPS下添加其代码</li>
+<li>最后就是修改模板.html文件</li>
+</ul>
+<h2 id="七、git初使用"><a href="#七、git初使用" class="headerlink" title="七、git初使用"></a>七、git初使用</h2><h3 id="Ⅰ"><a href="#Ⅰ" class="headerlink" title="Ⅰ"></a>Ⅰ</h3><ul>
+<li>下载:[<a target="_blank" rel="noopener" href="https://npm.taobao.org/mirrors/git-for-windows/],%E5%82%BB%E7%93%9C%E5%BC%8F%E5%AE%89%E8%A3%85">https://npm.taobao.org/mirrors/git-for-windows/],傻瓜式安装</a></li>
+<li>配置git,打开git bash<ul>
+<li>输入用户名及电子邮箱(均可虚构)</li>
+<li><code>git config --global user.name &quot;username&quot;</code></li>
+<li><code>git config --global user.mail &quot;username@example.com&quot;</code></li>
+</ul>
+</li>
+<li>项目文件常出现<strong>pycache__文件夹,里面有*.pyc类文件,可在项目中创建.gitignore文件,并添加__pycache</strong>/内容,即可忽略</li>
+<li>git命令一般在cmd内使用,并在仓库所在目录的终端下执行</li>
+<li>git版本号:<code>git --version</code></li>
+</ul>
+<h3 id="Ⅱ"><a href="#Ⅱ" class="headerlink" title="Ⅱ"></a>Ⅱ</h3><ul>
+<li>初始化仓库 <code>git init</code></li>
+<li>检查状态 <code>git status</code></li>
+<li>将文件加入仓库 <code>git add .(.表示未被跟踪的所有文件)</code></li>
+<li>执行初次提交 <code>git commit -m &quot;message(此次操作的名字)&quot; (-m表示记录此次操作)</code></li>
+<li>查看提交历史 <code>git log (内容有操作ID信息;后面加--pretty=oneline表示简洁重要模式输出)</code></li>
+<li>再次提交 <code>git commit -am &quot;message&quot; (-a表示提交所有修改的文件)</code></li>
+<li>撤销修改 <code>git checkout .(恢复到之前最后一次提交的状态)</code></li>
+<li>检出以前的提交 <code>git checkout ID前六个字符(离开分支master,进入分离头指针状态)</code></li>
+<li>回复到以前的指定状态 <code>git reset --hard ID前六个字符</code></li>
+<li>删除仓库 <code>rmdir /s .git(windows系统)</code></li>
+</ul>
+<h2 id="部署学习笔记"><a href="#部署学习笔记" class="headerlink" title="部署学习笔记"></a>部署学习笔记</h2><ul>
+<li>安装git和Hreoku Toolbelt</li>
+<li>在manage.py所在的文件夹下创建:<ul>
+<li>创建包含包列表的文件<code>requirements.txt:pip freeze &gt; requirements.txt</code></li>
+<li>指定Python版本,创建runtime.text,内容为:python-3.7.3</li>
+</ul>
+</li>
+<li>登录:<code>heroku:heroku login</code></li>
+<li>创建项目:<code>heroku create</code></li>
+<li>推送项目到服务器:<code>git push heroku master</code></li>
+<li>核实正确启动服务器进程:<code>heroku ps</code></li>
+<li>在Heroku上建立数据库<ul>
+<li><code>heroku run python manage.py migrate</code></li>
+</ul>
+</li>
+<li>连heroku服务器:<code>heroku run bash</code><ul>
+<li>创建超级用户:<code>python manage.py createsuperuser</code></li>
+</ul>
+</li>
+<li>修改URL名称:<code>heroku apps:rename name</code></li>
+<li>修改settings.py:<code>DEBUG=false</code>,以防被攻击,并修改<code>ALLOWED_HOSTS=[&#39;localhost&#39;]</code>,只允许本地托管该项目</li>
+<li>修改通用模板(自带模板),则必须在settings.py的模板块中修改<code>&#39;DIRS&#39;=[os.path.join(BASE_DIR,&#39;模板地址&#39;)]</code></li>
+<li>使用方法<code>get_object_or_404()</code>来防止引发500错误<ul>
+<li><code>from django.shortcuts import get_object_or_404</code></li>
+<li><code>topic = get_object_or_404(Topic, id=topic_id)</code></li>
+<li>如果请求的主题或条目不存在,就导致404错误(未修改之前是404错误)</li>
+</ul>
+</li>
+<li>设置SECRET_KEY来实现大量的安全协议</li>
+<li>删除项目:<code>heroku apps:destroy --app appname</code></li>
+</ul>
+<h2 id="PS-访问"><a href="#PS-访问" class="headerlink" title="PS:访问"></a>PS:访问</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:8000/admin/">http://localhost:8000/admin/</a> <strong>访问管理网站</strong></li>
+<li><strong>Django模型字段参考</strong></li>
+<li><strong>shell如何查询数据的文档</strong></li>
+<li><strong>Django模板文档</strong></li>
+<li><a target="_blank" rel="noopener" href="http://getbootstrap.com/">http://getbootstrap.com/</a> <strong>查看Bootstrap提供的模板</strong></li>
+<li><a target="_blank" rel="noopener" href="https://heroku.com/">https://heroku.com/</a> <strong>Heroku官网</strong></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/django/" rel="tag"># django</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/02/python_note/" rel="prev" title="Python笔记">
+                Python笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0-Python-Web%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.</span> <span class="nav-text">项目笔记:Python-Web应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81Django%E5%85%A5%E9%97%A8"><span class="nav-number">1.1.</span> <span class="nav-text">一、Django入门:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Django%E7%AE%A1%E7%90%86%E7%BD%91%E7%AB%99"><span class="nav-number">1.2.</span> <span class="nav-text">二、Django管理网站</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81Django-shell"><span class="nav-number">1.3.</span> <span class="nav-text">三、Django shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%88%9B%E5%BB%BA%E7%BD%91%E9%A1%B5"><span class="nav-number">1.4.</span> <span class="nav-text">四、创建网页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7"><span class="nav-number">1.5.</span> <span class="nav-text">五、用户账户</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE"><span class="nav-number">1.5.1.</span> <span class="nav-text">输入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%94%A8%E6%88%B7%E8%B4%A6%E6%88%B7"><span class="nav-number">1.5.2.</span> <span class="nav-text">创建用户账户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%85%B3%E8%81%94%E7%94%A8%E6%88%B7"><span class="nav-number">1.5.3.</span> <span class="nav-text">数据关联用户</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%A1%B5%E9%9D%A2%E6%A0%B7%E5%BC%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.6.</span> <span class="nav-text">六、页面样式设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81git%E5%88%9D%E4%BD%BF%E7%94%A8"><span class="nav-number">1.7.</span> <span class="nav-text">七、git初使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%85%A0"><span class="nav-number">1.7.1.</span> <span class="nav-text">Ⅰ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E2%85%A1"><span class="nav-number">1.7.2.</span> <span class="nav-text">Ⅱ</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-number">1.8.</span> <span class="nav-text">部署学习笔记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PS-%E8%AE%BF%E9%97%AE"><span class="nav-number">1.9.</span> <span class="nav-text">PS:访问</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WENCHIH CHANG</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

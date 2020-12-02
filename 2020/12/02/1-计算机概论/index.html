@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="WENCHIH'S BLOG" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="计算机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机概论">
+<meta property="og:url" content="http://example.com/2020/12/02/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A6%82%E8%AE%BA/index.html">
+<meta property="og:site_name" content="WENCHIH&#39;S BLOG">
+<meta property="og:description" content="计算机">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-02T02:56:46.000Z">
+<meta property="article:modified_time" content="2020-12-02T03:01:44.870Z">
+<meta property="article:author" content="WENCHIH CHANG">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2020/12/02/1-计算机概论/"/>
+
+
+
+
+
+  <title>计算机概论 | WENCHIH'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WENCHIH'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/02/1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%A6%82%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WENCHIH'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机概论</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-02T10:56:46+08:00">
+                2020-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/Linux%E8%A7%84%E5%88%99%E4%B8%8E%E5%AE%89%E8%A3%85/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux规则与安装</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="计算机"><a href="#计算机" class="headerlink" title="计算机"></a>计算机</h1><a id="more"></a>
+<ul>
+<li><p>计算机：接受使用者输入指令与资料，经由中央处理器的数学与逻辑单元运算处理后，以产生或储存成有用的信息。</p>
+</li>
+<li><p>计算机五大单元：输入单元、输出单元、CPU内部的控制单元、算数逻辑单元与内存</p>
+</li>
+<li><p>CPU：Central Processing Unit，CPU为一个具有特定功能的芯片，里面含有指令集。</p>
+<ul>
+<li>精简指令集(Reduced Instruction Set Computer, RISC)<ul>
+<li>多为ARM架构，多为手机采用</li>
+</ul>
+</li>
+<li>复杂指令集(Complex Instruction Set Computer, CISC)<ul>
+<li>多为AMD、Intel等X86架构，多为个人电脑采用。</li>
+</ul>
+</li>
+<li>X86架构CPU之间的差异<ul>
+<li>二级缓存（L2 Cache）</li>
+<li>命令执行周期</li>
+<li>指令集</li>
+</ul>
+</li>
+<li>位（bit）：指CPU一次读取数据的最大量。<ul>
+<li>一般32位的CPU所能读写的最大数据量大概是4GB。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>电脑分类及应用领域</p>
+<ul>
+<li>超级计算机：国防军事、气象预测、太空科技</li>
+<li>大型计算机：大型企业</li>
+<li>迷你计算机：科学研究、工程分析、工厂流程管理</li>
+<li>工作站：学术研究、工程分析</li>
+<li>微电脑：台式、笔记本</li>
+</ul>
+</li>
+<li><p>计算单位</p>
+<ul>
+<li><p>容量单位</p>
+<ul>
+<li>1字节（Byte）=8比特位（bit）</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>进位制</th>
+<th>Kilo</th>
+<th>Mega</th>
+<th>Giga</th>
+<th>Tera</th>
+<th>Peta</th>
+<th>Exa</th>
+<th>Zetta</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>二进位</td>
+<td>1024</td>
+<td>1024K</td>
+<td>1024M</td>
+<td>1024G</td>
+<td>1024T</td>
+<td>1024P</td>
+<td>1024E</td>
+</tr>
+<tr>
+<td>十进位</td>
+<td>1000</td>
+<td>1000K</td>
+<td>1000M</td>
+<td>1000G</td>
+<td>1000T</td>
+<td>1000P</td>
+<td>1000E</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>速度单位</p>
+<ul>
+<li>Hz：次数/秒</li>
+<li>网络传输方面常见单位：Mbit/s</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="PC架构与设备组件"><a href="#PC架构与设备组件" class="headerlink" title="PC架构与设备组件"></a>PC架构与设备组件</h1><ul>
+<li>主板<ul>
+<li>北桥：负责连接速度较快的CPU、内存、显卡等（北桥内存控制器现在大多直接整合到CPU中当中）</li>
+<li>南桥：负责连接较慢的设备接口，如硬盘、USB、网卡等</li>
+</ul>
+</li>
+<li>CPU<ul>
+<li>工作频率：外频X倍频<ul>
+<li>外频：CPU与外部组件进行数据传输时的速度</li>
+<li>倍频：CPU内部用来加速工作性能的一个倍数</li>
+<li>超频：提高外频</li>
+</ul>
+</li>
+<li>前端总线速度（Front Side Bus，FSB）：CPU中的内存控制芯片与内存间的传输速度<ul>
+<li>带宽：位宽（每个时钟周期能够传输的数据量）X频率</li>
+<li>字长（word size）：与位宽相似，CPU每次能够处理的数据量</li>
+</ul>
+</li>
+<li>超线程（Hyper-Threading,HT）:将CPU中的寄存器分成两组，可以让程序分别使用。就相当于一个内核分成两个的样子。</li>
+</ul>
+</li>
+<li>内存（Main Memory）<ul>
+<li>RAM<ul>
+<li>动态随机存取内存（Dynamic Random Access Memory,DRAM）<ul>
+<li>双倍数据传输速度（Double Data Rate，DDR）</li>
+</ul>
+</li>
+<li>静态随机存取内存（Static Random Access Memory，SRAM）：在CPU内部加快二级缓存</li>
+<li>CMOS<ul>
+<li>保存当前系统的硬件配置信息和用户设定的某些参数。主板上的一块可读写的并行或串行FLASH芯片，是用来保存BIOS的硬件配置和用户对某些参数的设定。</li>
+<li>记录主板上的重要参数，包括系统时间、CPU电压与频率、各项设备的I/O地址与IRQ等，由于这些数据的记录要用电，因此主板上面才有电池</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>只读存储器（Read Only Memory，ROM）<ul>
+<li>BIOS<ul>
+<li>记录系统硬件的详细信息与启动设备的选择</li>
+<li>写入到主板上某一块flash或EEPROM的程序，它可以在计算机启动的时候执行，以加载CMOS当中的参数，并尝试调用存储设备中的引导程序，进一步进入操作系统当中。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>显卡（Video Graphics Array，VGA）<ul>
+<li>GPU：嵌入显卡里的一个3D加速芯片</li>
+<li>与显示器接口<ul>
+<li>D-Sub（VGA接口）</li>
+<li>DVI</li>
+<li>HDMI：可同时传输影像与声音</li>
+<li>DisplayPort</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>硬盘（disk）<ul>
+<li>物理组成<ul>
+<li>圆形碟片</li>
+<li>机械手臂</li>
+<li>磁头</li>
+<li>主轴马达</li>
+</ul>
+</li>
+<li>数据<ul>
+<li>扇区（sector）：磁盘的最小物理存储单位<ul>
+<li>分区模式<ul>
+<li>MBR（MS-DOS兼容模式）：通过柱面号码来划分</li>
+<li>GPT：通过扇区号码来划分 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>磁道（track）：同一个同心圆的扇区组合成的园</li>
+<li>柱面（sylinder）：所有碟片上面同一个磁道可以组合成所谓的柱面</li>
+</ul>
+</li>
+<li>固态硬盘（Solid State Disk，SSD）<ul>
+<li>通过闪存直接读写数据</li>
+<li>测试度量单位：每秒读写操作次数（Input/Output Operations Per Second，IOPS）</li>
+</ul>
+</li>
+<li>机械硬盘（Hard Disk Drive，HDD）<ul>
+<li>用驱动马达去转动碟片，会造成严重的读取延迟</li>
+<li>缓冲存储器（缓存）：加速系统的读写性能</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>主板<ul>
+<li>DMI 2.0总线：CPU与南桥的通信管道</li>
+<li>设备<ul>
+<li>I/O地址：每个设备都有自己的地址</li>
+<li>IRQ中断请求（Interrupt）：告知CPU该设备的工作情况，以方便CPU进行工作分配的任务</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="数据表示方式"><a href="#数据表示方式" class="headerlink" title="数据表示方式"></a>数据表示方式</h1><ul>
+<li>字符编码系统<ul>
+<li>一个汉字占两个字节</li>
+<li>万国码：Unicode编码系统，UTF-8</li>
+</ul>
+</li>
+</ul>
+<h1 id="软件程序运行"><a href="#软件程序运行" class="headerlink" title="软件程序运行"></a>软件程序运行</h1><ul>
+<li>操作系统（Operating System，OS）：一组程序，重点在于管理电脑的所有活动以及驱动系统中的所有硬件<ul>
+<li>操作系统内核（Kernel）<ul>
+<li>一直常驻在内存当中</li>
+</ul>
+</li>
+<li>系统调用（system recall）<ul>
+<li>应用程序编程接口（Application Programming Interface，API）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>应用程序（壳程序，shell）：来调用操作系统操作硬件工作（就是使用程序的过程）  </li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/02/2-LINUX/" rel="next" title="LINUX">
+                <i class="fa fa-chevron-left"></i> LINUX
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">计算机</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PC%E6%9E%B6%E6%9E%84%E4%B8%8E%E8%AE%BE%E5%A4%87%E7%BB%84%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">PC架构与设备组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%A4%BA%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">数据表示方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C"><span class="nav-number">4.</span> <span class="nav-text">软件程序运行</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WENCHIH CHANG</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="WENCHIH'S BLOG" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="用户与用户组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux文件权限与目录配置">
+<meta property="og:url" content="http://example.com/2020/12/02/6-Linux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="WENCHIH&#39;S BLOG">
+<meta property="og:description" content="用户与用户组">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-02T02:56:46.000Z">
+<meta property="article:modified_time" content="2020-12-02T03:07:43.138Z">
+<meta property="article:author" content="WENCHIH CHANG">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2020/12/02/6-Linux的文件权限与目录配置/"/>
+
+
+
+
+
+  <title>Linux文件权限与目录配置 | WENCHIH'S BLOG</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">WENCHIH'S BLOG</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/02/6-Linux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="WENCHIH'S BLOG">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Linux文件权限与目录配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-02T10:56:46+08:00">
+                2020-12-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/Linux%E6%96%87%E4%BB%B6%E3%80%81%E7%9B%AE%E5%BD%95%E4%B8%8E%E7%A3%81%E7%9B%98%E6%A0%BC%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux文件、目录与磁盘格式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="用户与用户组"><a href="#用户与用户组" class="headerlink" title="用户与用户组"></a>用户与用户组</h1><a id="more"></a>
+<ul>
+<li>万能天神(root)</li>
+<li>文件拥有者(owner):文件的主人</li>
+<li>用户组(group):进行团队协作</li>
+<li>其他人(others):相当于路人</li>
+<li>用户记录文件<ul>
+<li>所有用户相关信息都记录在/etc/passwd这个文件内</li>
+<li>个人密码记录在/etc/shadow文件内</li>
+<li>所有组名记录在/etc/group文件内</li>
+</ul>
+</li>
+</ul>
+<h1 id="Linux文件权限"><a href="#Linux文件权限" class="headerlink" title="Linux文件权限"></a>Linux文件权限</h1><ul>
+<li>Linux文件属性<ul>
+<li>执行命令:<code>ls -al 目录名</code>查看属性<ul>
+<li>ls是list缩写</li>
+<li>-l是列出所有文件详细的权限与属性</li>
+<li>-a是列出隐藏文件</li>
+</ul>
+</li>
+<li>例子(各字段及其意思):<table>
+<thead>
+<tr>
+<th>dr-xr-xr-x.</th>
+<th>5</th>
+<th>root</th>
+<th>root</th>
+<th>4096</th>
+<th>3月31 09:53</th>
+<th>boot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件类型权限</td>
+<td>链接数</td>
+<td>文件拥有者</td>
+<td>文件所属用户组</td>
+<td>文件大小</td>
+<td>文件最后修改日期</td>
+<td>文件名</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li>文件属性各字段意思<ul>
+<li>第一字段代表文件类型与权限<ul>
+<li>例子<table>
+<thead>
+<tr>
+<th>d</th>
+<th>rwx</th>
+<th>rwx</th>
+<th>rwx</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件类型</td>
+<td>文件拥有者权限</td>
+<td>文件所属用户组权限</td>
+<td>其他人权限</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li>第二字段表示多少文件名链接到此节点</li>
+<li>第三字段表示这个文件或目录的拥有者</li>
+<li>第四字段表示这个文件所属用户组</li>
+<li>第五字段表示文件的容量大小,默认单位Bytes</li>
+<li>第六字段表示文件创建日期或是最近修改的时间</li>
+<li>第七字段为文件名</li>
+</ul>
+</li>
+<li>修改文件属性与权限<ul>
+<li>权限<ul>
+<li>[r]代表可读(read)</li>
+<li>[w]代表可写(write)</li>
+<li>[x]代表可执行(execute)</li>
+<li>没有相应权限就用[-]表示</li>
+</ul>
+</li>
+<li><code>chgrp</code>:修改文件所属用户组<ul>
+<li>要被修改的组名必须要在/etc/group文件中存在</li>
+</ul>
+</li>
+<li><code>chown</code>:修改文件拥有者<ul>
+<li>既可以改文件拥有者也可改用户组,格式:<code>chown user:group file</code>,用冒号隔开</li>
+</ul>
+</li>
+<li><code>chmod</code>:修改文件的权限,SUID、SGID、SBIT等的特性<ul>
+<li><code>chmod 数字 目标文件或目录</code>,数字为相应二进制</li>
+<li><code>chmod [ugoa]+[+-=]+[rwx] 目标文件或目录</code></li>
+</ul>
+</li>
+<li>如果连同目录下所有文件或目录一同修改的话,命令可加入<a href="recursive%E9%80%92%E5%BD%92">-R</a>选项</li>
+<li><code>cp</code>:复制操作<ul>
+<li><code>cp 源文件 目标文件</code>:会连同属性和权限一同复制</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>权限对目录或文件的意义<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>内容</th>
+<th>替代对象</th>
+<th>r</th>
+<th>w</th>
+<th>x</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>文件</td>
+<td>详细数据data</td>
+<td>文件夹</td>
+<td>读到文件内容</td>
+<td>修改文件内容</td>
+<td>执行文件内容</td>
+</tr>
+<tr>
+<td>目录</td>
+<td>文件名</td>
+<td>可分类抽屉</td>
+<td>读到文件名</td>
+<td>修改文件名、删除文件、移动目录内文件、目录</td>
+<td>进入该目录的权限</td>
+</tr>
+</tbody></table>
+</li>
+<li>各用户对自己的家目录有rwx权限</li>
+<li>文件类型<ul>
+<li>常规文件(regular file)<ul>
+<li>用[-]表示</li>
+<li>纯文本文件(ASCLL):可用<code>cat</code>命令读取</li>
+<li>二进制文件(binary):系统认识且可以执行的二进制命令</li>
+<li>数据文件(data):可用<code>last</code>命令读取,程序运行过程读取的数据文件</li>
+</ul>
+</li>
+<li>目录文件(directory):[d]</li>
+<li>链接文件(link file):[l]</li>
+<li>设备与设备文件(device):通常在/dev目录下<ul>
+<li>区块(block)设备文件:[b],一些存储数据,以提供系统随机存取的接口设备,如硬盘、软盘、U盘等</li>
+<li>字符(character)设备文件:[c],一些串行端口的接口设备,如键盘、鼠标等(特色为一次性读取)</li>
+</ul>
+</li>
+<li>数据接口文件(sockets):[s],通常被用在网络上的数据交换,在/run、/tmp目录下常出现这种文件类型</li>
+<li>数据输送文件(FIFO,pipe)<ul>
+<li>[p],first-in-first-out,即管道,常用于多程序读取一个文件</li>
+</ul>
+</li>
+<li>socket与socket与进程(process)有关</li>
+</ul>
+</li>
+<li>常用文件扩展名<ul>
+<li>*.sh:脚本或批处理文件(scripts),用shell写成</li>
+<li><em>Z、</em>.tar、*.tar.gz、*.zip、*.tgz:经过打包的压缩文件,根据不同压缩软件而得名</li>
+<li><em>.html、</em>.php:html语法或php语法的网页文件</li>
+<li>Linux内核常用文件名:vmlinuz</li>
+</ul>
+</li>
+<li>与Windows系统不同,文件是否可执行与是否有x权限和是否有可执行程序代码有关</li>
+<li>Linux文件命名以详细为目的,所以很多文件名很长<ul>
+<li>单一目录或文件名最长为255字节,128个汉字以内</li>
+</ul>
+</li>
+</ul>
+<h1 id="Linux目录配置"><a href="#Linux目录配置" class="headerlink" title="Linux目录配置"></a>Linux目录配置</h1><ul>
+<li>Linux目录配置依据:FHS(Filesystem Hierarchy Standard)标准</li>
+<li>FHS定义的目录<ul>
+<li>可分享(shareable):能够分享给网络上其他主机挂载的目录</li>
+<li>不可分享(unshareable):自己机器上面运行的设备文件或是与程序有关的socket文件,与自身机器有关,不适合分享</li>
+<li>不变(static):不经常变动,如函数库、文件说明、系统管理员所管理的主机服务配置文件等</li>
+<li>可变动(variable):经常修改的数据,如日志文件、一般用户可自行接受的新闻组</li>
+</ul>
+</li>
+<li>FHS定义的目录树(directory tree)<ul>
+<li>/(root,根目录):与启动系统有关</li>
+<li>/usr(unix software resource):与软件安装/执行有关</li>
+<li>/var(variable):与系统运行过程有关<blockquote>
+<p>1、目录树的起始点为根目录<br>2、每一个目录不止可使用本地分区的文件系统,还可以使用网络上的,可以通过挂载某特定目录来使用<br>3、每一个文件在此目录树中的文件名(包括完整路径)都是独一无二的</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>根目录[6-1]<ul>
+<li>FHS要求必须存在的目录<ul>
+<li>/bin:在单人维护模式下还能够被使用的命令,如<code>cat</code>、<code>date</code>、<code>chmod</code>、<code>cp</code>等</li>
+<li>/boot:启动会使用到的文件,包括内核文件、启动选项、启动所需配置文件等</li>
+<li>/dev:任何设备与接口设备存放处</li>
+<li>/etc:系统主要的配置文件几乎存放在此目录,建议不要放置可执行文件(binary)<ul>
+<li>/opt(FHS必要):存放第三方辅助软件/opt的相关配置文件</li>
+<li>/X11(FHS建议):与X window有关的配置文件</li>
+<li>/sgml(FHS建议):与SGML格式有关的各项配置文件</li>
+<li>/xml(FHS建议):与XML格式有关的各项配置文件</li>
+</ul>
+</li>
+<li>/lib:放置在启动时会用到的函数库,以及/bin或/sbin下面的命令会调用的函数库<ul>
+<li>/modules(FHS必要):驱动程序</li>
+</ul>
+</li>
+<li>/media:放置可删除设备,如软盘、光盘、DVD</li>
+<li>/mnt:暂时挂载某些额外设备</li>
+<li>/opt:第三方辅助软件放置的目录</li>
+<li>/run:系统启动后所产生的各项信息,可以使用内存来模拟</li>
+<li>/sbin:启动过程所需要的,包括启动、修复、还原系统所需要的命令,还包括某些服务器软件程序,常见命令包括<code>fdisk</code>、<code>ifconfig</code>等.至于本机自行安装的软件所产生的系统执行文件(system binary),则放置在/usr/local/sbin/当中</li>
+<li>/src:service缩写,一些网络服务启动之后,这些服务所需要使用的数据目录,如/srv/www/</li>
+<li>/tmp:让一般用户或是正在执行的程序暂时放置文件的地方</li>
+<li>/usr</li>
+<li>/var:主要放置变动性的数据</li>
+</ul>
+</li>
+<li>FHS建议可存在的目录<ul>
+<li>/home:用户家目录存放位置</li>
+<li>/lib<qual>:用来存放与/lib不同格式的二进制函数库,如支持64位的/lib64函数库等</li>
+<li>/root:系统管理员(root)的家目录,进入单人维护模式,通过挂载根目录,也能够拥有root家目录,此目录应与根目录放置到同一分区</li>
+</ul>
+</li>
+<li>其他重要目录<ul>
+<li>/lost+found:使用ext234文件系统格式才会产生的一个目录,目的在于当文件系统发生错误时,将一些遗失的片段放置到这个目录下</li>
+<li>/proc:虚拟文件系统(virtual filesystem),如系统内核、进程信息(process)、外接设备的状态及网络状态.此目录下的数据都是在内存当中,本身不占硬盘容量</li>
+<li>/sys:与/proc相似,主要记录内核与系统硬件信息相关的内容.包括目前已加载的内核模块与内核检测到的硬件设备信息等,不占用硬盘容量</li>
+</ul>
+</li>
+<li>五个重要目录必须跟根目录放置在一起:/etc、/bin、/dev、/lib、/sbin</li>
+</ul>
+</li>
+<li>/usr:安装时会占用较大硬盘容量<ul>
+<li>FHS要求必须存在的目录<ul>
+<li>/bin:和根目录/bin是同一个文件,其链接于此</li>
+<li>/lib:和根目录/lib是同一个文件,其链接于此</li>
+<li>/local:安装自己下载的软件</li>
+<li>/sbin:和根目录/sbin是同一个文件,其链接于此</li>
+<li>/share:主要放置只读的数据文件,当然还有共享文件,几乎都是文本文件.几乎不区分硬件架构,都可以读取</li>
+</ul>
+</li>
+<li>FHS建议可存在的目录<ul>
+<li>/games:与游戏相关的数据放置处</li>
+<li>/include:c/c++等程序语言的头文件(header)与包含文件(include)放置处</li>
+<li>/libexec:某些不被一般用户常用的执行文件或脚本(script)等,例如大部分X窗口下面的操作命令</li>
+<li>/lib<qual>:和根目录/lib<qual>是同一个文件,其链接于此</li>
+<li>/src:source,一般源代码放置处</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>/var:在系统运行后才渐渐占用硬盘容量<ul>
+<li>FHS要求必须存在的目录<ul>
+<li>/cache:应用程序本身运行过程中会产生的一些缓存</li>
+<li>/lib:软件运行过程中,需要使用到自己的数据文件,每个软件应有自己的目录</li>
+<li>/lock:链接到根目录/run/lock,某些设备或文件资源只能同时被一个应用使用,则需要给其上锁</li>
+<li>/log:放置日志文件,记录登录信息等</li>
+<li>/mail:放置个人电子游戏,与/spool/mail互为链接文件</li>
+<li>/run:链接到根目录/run,某些程序或服务启动后,会将它们的PID放置在此目录</li>
+<li>/spool:通常放一些队列数据,就是排队等待其他程序使用的数据,被使用后通常被删除</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>路径<ul>
+<li>绝对路径:由根目录开始写起的文件名或目录名称</li>
+<li>相对路径:由当前位置写起的文件或目录名称<ul>
+<li>[.]表示当前目录</li>
+<li>[..]表示上一层目录</li>
+</ul>
+</li>
+<li>执行本目录下的命令文件:<code>./文件名</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h1><ul>
+<li><code>uname</code><ul>
+<li>查看内核版本:<code>uname -r</code></li>
+<li>查看操作系统的架构版本:<code>uname -m</code></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/12/02/7-Linux%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/" rel="next" title="Linux文件与目录管理">
+                <i class="fa fa-chevron-left"></i> Linux文件与目录管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/12/02/5-%E9%A6%96%E6%AC%A1%E7%99%BB%E5%BD%95%E4%B8%8E%E5%9C%A8%E7%BA%BF%E6%B1%82%E5%8A%A9/" rel="prev" title="首次登陆与在线求助">
+                首次登陆与在线求助 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E4%B8%8E%E7%94%A8%E6%88%B7%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">用户与用户组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90"><span class="nav-number">2.</span> <span class="nav-text">Linux文件权限</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">Linux目录配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">命令</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">WENCHIH CHANG</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
